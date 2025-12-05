@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "NodeNext",
     "target": "ES2020",
-    "types": [],
+    "types": ["node"],
     "moduleResolution": "nodenext", // <-- ADD THIS LINE
     // For nodejs:
     // "lib": ["esnext"],
