@@ -1,23 +1,19 @@
 import express from "express";
-import http from "http";
 import cors from "cors";
 import mongoose from "mongoose";
-import helmet from "helmet";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
-app.use(helmet());
+
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hire Sphere API");
-});
+// Routes
+app.use("/api/auth", authRoutes);
 
-const MONGO =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/hire_sphere";
-mongoose
-  .connect(MONGO)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+// DB Connection
+mongoose.connect(process.env.MONGO_URI as string)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 export default app;
